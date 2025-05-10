@@ -53,6 +53,9 @@ if __name__ == '__main__':
             speak("What do you want me    to translate?")
             text = take_command().lower()
             webbrowser.open(f"https://translate.google.com/?sl=auto&tl=en&text={text}&op=translate")
+        elif 'lock screen' in query:
+           speak("Locking your screen")
+           os.system("rundll32.exe user32.dll,LockWorkStation")
 
 command_map = {
         'open youtube': lambda: webbrowser.open("youtube.com"),
