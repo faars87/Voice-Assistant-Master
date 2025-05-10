@@ -44,7 +44,7 @@ if __name__ == '__main__':
             query = query.replace("wikipedia", '')
             results = wikipedia.summary(query, sentences=2)
             speak("According to wikipedia")
-            speak("Fetching weather details")
+            speak("Fetching weather details...")
             webbrowser.open("https://www.weather.com")
 
             speak(results)
@@ -81,5 +81,9 @@ if __name__ == '__main__':
         elif 'local disk e' in query:
             speak("opening local disk E")
             webbrowser.open("E://")
+
+        elif 'open browser' in query or 'start browser' in query or 'launch browser' in query:
+           speak("Opening your default browser")
+         webbrowser.open("https://www.google.com")
         elif 'sleep' in query:
             exit(0)
