@@ -51,8 +51,10 @@ if __name__ == '__main__':
         elif 'are you' in query:
             speak("I am amigo developed by Jaspreet Singh")
         elif 'open youtube' in query:
-            speak("opening youtube")
-            webbrowser.open("youtube.com")
+           speak("What should I  to  search on YouTube?")
+           search_query = take_command().lower()
+        webbrowser.open(f"https://www.youtube.com/results?search_query={search_query}")
+
         elif 'open google' in query:
             speak("opening google")
             webbrowser.open("google.com")
