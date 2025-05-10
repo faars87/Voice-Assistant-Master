@@ -19,13 +19,13 @@ def speak(audio):
 def take_command():
     r = sr.Recognizer()
     with sr.Microphone() as source:
-        print("Listening...")
+        print("Listening............")
         r.pause_threshold = 1
         audio = r.listen(source)
     try:
-        print("Recognizing...")
-        query = r.recognize_google(audio, language='en-in')
-        print("User said:" + query + "\n")
+        print("Microphone not found")
+        speak("Microphone not available")
+        return "None"
     except Exception as e:
         print(e)
         speak("I didnt understand")
