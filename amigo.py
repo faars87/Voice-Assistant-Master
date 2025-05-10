@@ -44,6 +44,9 @@ if __name__ == '__main__':
             query = query.replace("wikipedia", '')
             results = wikipedia.summary(query, sentences=2)
             speak("According to wikipedia")
+            speak("Fetching weather details")
+            webbrowser.open("https://www.weather.com")
+
             speak(results)
         elif 'are you' in query:
             speak("I am amigo developed by Jaspreet Singh")
