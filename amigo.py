@@ -7,7 +7,7 @@ import os
 # init pyttsx
 engine = pyttsx3.init("sapi5")
 voices = engine.getProperty("voices")
-
+query = re.sub(r'[^\w\s]', '', query) 
 engine.setProperty('voice', voices[1].id)  # 1 for female and 0 for male voice
 
 
@@ -48,44 +48,22 @@ if __name__ == '__main__':
             webbrowser.open("https://www.weather.com")
 
             speak(results)
-        elif 'are you' in query:
-            speak("I am amigo developed by Jaspreet Singh")
-        elif 'open youtube' in query:
-           speak("What should I  to  search    on YouTube?")
-           search_query = take_command().lower()
-        webbrowser.open(f"https://www.youtube.com/results?search_query={search_query}")
-
-        elif 'open google' in query:
-            speak("opening google")
-            webbrowser.open("google.com")
-        elif 'open github' in query:
-            speak("opening github")
-            webbrowser.open("github.com")
-        elif 'open stackoverflow' in query:
-            speak("opening stackoverflow")
-            webbrowser.open("stackoverflow.com")
-        elif 'open spotify' in query:
-            speak("opening spotify")
-            webbrowser.open("spotify.com")
-        elif 'open whatsapp' in query:
-            speak("opening whatsapp")
-            loc = "C:\\Users\\jaspr\\AppData\\Local\\WhatsApp\\WhatsApp.exe"
-            os.startfile(loc)
-        elif 'play music' in query:
-            speak("opening music")
-            webbrowser.open("spotify.com")
-        elif 'local disk d' in query:
-            speak("opening local disk D")
-            webbrowser.open("D://")
-        elif 'local disk c' in query:
-            speak("opening local disk C")
-            webbrowser.open("C://")
-        elif 'local disk e' in query:
-            speak("opening local disk E")
-            webbrowser.open("E://")
-
-        elif 'open browser' in query or 'start browser' in query or 'launch browser' in query:
-           speak("Opening your default browser")
-         webbrowser.open("https://www.google.com")
-        elif 'sleep' in query:
-            exit(0)
+command_map = {
+        'open youtube': lambda: webbrowser.open("youtube.com"),
+        'open google': lambda: webbrowser.open("google.com"),
+        'open github': lambda: webbrowser.open("github.com"),
+        'open stackoverflow': lambda: webbrowser.open("stackoverflow.com"),
+        'open spotify': lambda: webbrowser.open("spotify.com"),
+        'play music': lambda: webbrowser.open("spotify.com"),
+         'open whatsapp': lambda: os.startfile("C:\\Users\\jaspr\\AppData\\Local\\WhatsApp\\WhatsApp.exe"),
+       'local disk d': lambda: webbrowser.open("D://"),
+       'local disk c': lambda: webbrowser.open("C://"),
+        'local disk e': lambda: webbrowser.open("E://"),
+       'weather': lambda: webbrowser.open("https://www.weather.com"),
+       'lock screen': lambda: os.system("rundll32.exe user32.dll,LockWorkStation")
+}
+for key in command_map:
+       if key in query:
+        speak(f"Executing {key}")
+        command_map[key]()
+        break
