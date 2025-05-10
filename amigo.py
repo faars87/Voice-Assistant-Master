@@ -48,6 +48,12 @@ if __name__ == '__main__':
             webbrowser.open("https://www.weather.com")
 
             speak(results)
+
+        elif 'translate this' in query:
+            speak("What do you want me    to translate?")
+            text = take_command().lower()
+            webbrowser.open(f"https://translate.google.com/?sl=auto&tl=en&text={text}&op=translate")
+
 command_map = {
         'open youtube': lambda: webbrowser.open("youtube.com"),
         'open google': lambda: webbrowser.open("google.com"),
